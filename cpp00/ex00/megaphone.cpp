@@ -13,7 +13,7 @@ int main(int argc, char *argv[])
 		for (int i = 1; i < argc; i++)
 		{
 			std::string arg = argv[i];
-			for (int j = 0; j < (int)strlen(argv[i]); j++)
+			for (int j = 0; j < static_cast<int>(arg.length()); j++)
 			{
 				arg[j] = std::toupper(arg[j]);
 			}

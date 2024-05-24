@@ -1,19 +1,10 @@
 # ifndef PHONEBOOK_HPP
 # define PHONEBOOK_HPP
 
+#include "PhoneBook.h"
 #include "Contact.hpp"
 #include <iomanip>
 #include <sstream>
-
-
-enum {
-	FIRSTNAME,
-	LASTNAME,
-	NICKNAME,
-	PHONENUMBER,
-	DARKSETSECRET
-};
-
 
 class PhoneBook
 {
