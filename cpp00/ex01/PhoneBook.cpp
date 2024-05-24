@@ -70,7 +70,7 @@ void	PhoneBook::add()
 	input = getUserInput(PHONENUMBER);
 	contacts[idx_ % 8].set_phone_number(input);
 	input = getUserInput(DARKSETSECRET);
-	contacts[idx_ % 8].set_last_name(input);
+	contacts[idx_ % 8].set_darkset_secret(input);
 	idx_++;
 	if (idx_ < 8)
 		num_++;
@@ -78,10 +78,9 @@ void	PhoneBook::add()
 
 void	PhoneBook::search()
 {
-	std::string s_idx;
-	int idx;
+	std::string	s_idx;
+	int			idx;
 
-	std::cout << " ------------------------------------------- " << std::endl;
 	PhoneBook::printPhoneBook();
 
 	while (!std::cin.eof() && s_idx.empty())
@@ -122,6 +121,7 @@ void	PhoneBook::printPhoneBookIdx(int idx)
 
 void	PhoneBook::printPhoneBook()
 {
+	std::cout << " ------------------------------------------- " << std::endl;
 	std::cout << "|";
 	printFormattedString("index");
 	std::cout << "|";
