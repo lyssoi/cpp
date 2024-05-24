@@ -6,7 +6,7 @@ int main()
 
 	for (int i = 0; i < 10; i++)
 	{
-		arr->announce();
+		arr[i].announce();
 	}
 	return (0);
 }
