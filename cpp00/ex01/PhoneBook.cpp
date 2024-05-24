@@ -2,7 +2,6 @@
 # define TRUE 1
 # define FALSE 0
 
-
 PhoneBook::PhoneBook()
 {
 	idx_ = 0;
