@@ -12,13 +12,13 @@ void Contact::set_nick_name(std::string nick_name)
 {
 	nick_name_ = nick_name;
 }
-void Contact::set_phone_number(std::string darkset_secret)
+void Contact::set_phone_number(std::string phone_number)
+{
+	phone_number_ = phone_number;
+}
+void Contact::set_darkset_secret(std::string darkset_secret)
 {
 	darkset_secret_ = darkset_secret;
-}
-void Contact::set_darkset_secret(std::string first_name)
-{
-	first_name_ = first_name;
 }
 
 

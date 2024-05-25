@@ -1,0 +1,12 @@
+# ifndef PHONEBOOK_H
+# define PHONEBOOK_H
+
+enum {
+	FIRSTNAME,
+	LASTNAME,
+	NICKNAME,
+	PHONENUMBER,
+	DARKSETSECRET
+};
+
+#endif

@@ -1,10 +1,9 @@
-NAME = ex03
+NAME = brainz
 CPP = c++
 CPPFLAGS = -Wall -Wextra -Werror -std=c++98
 SRC = main.cpp\
-	HumanA.cpp\
-	HumanB.cpp\
-	Weapon.cpp
+	Zombie.cpp\
+	zombieHorde.cpp
 
 OBJ = $(SRC:.cpp=.o)
 
@@ -12,6 +11,8 @@ all : $(NAME)
 
 $(NAME) : $(OBJ)
 		$(CPP) $(CPPFLAGS) -o $@ $^
+
+
 clean:
 	rm -rf  $(OBJ)
 

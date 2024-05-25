@@ -1,4 +1,10 @@
 {
+<<<<<<< HEAD
+	"files.associations": {
+		"iosfwd": "cpp"
+	}
+}
+=======
   "files.associations": {
     "*.css": "tailwindcss",
     "sstream": "cpp",
@@ -56,3 +62,4 @@
     "algorithm": "cpp"
   }
 }
+>>>>>>> 39cf313e7568a310ee954f27ef319dd1b3c28922

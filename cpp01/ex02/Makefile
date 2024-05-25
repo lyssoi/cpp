@@ -1,10 +1,7 @@
-NAME = ex03
+NAME = ex02
 CPP = c++
 CPPFLAGS = -Wall -Wextra -Werror -std=c++98
-SRC = main.cpp\
-	HumanA.cpp\
-	HumanB.cpp\
-	Weapon.cpp
+SRC = main.cpp
 
 OBJ = $(SRC:.cpp=.o)
 
@@ -12,6 +9,8 @@ all : $(NAME)
 
 $(NAME) : $(OBJ)
 		$(CPP) $(CPPFLAGS) -o $@ $^
+
+
 clean:
 	rm -rf  $(OBJ)
 
