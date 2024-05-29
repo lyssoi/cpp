@@ -2,35 +2,41 @@
 #include <fstream>
 #include <string>
 
-void print_err(std::string msg)
+#define ERROR 1
+#define SUCCESS 0
+
+int print_err(std::string msg)
 {
     std::cout << msg << std::endl;
-    exit(1);
+    return (ERROR);
 }
 
-void init_s1s2(std::string &s1, std::string &s2, char *argv[])
+int init_s1s2(std::string &s1, std::string &s2, char *argv[])
 {
     s1 = argv[2];
     s2 = argv[3];
 
     if (s1.empty() || s2.empty())
-        print_err("The string is empty.");
+        return (print_err("The string is empty."));
+    return (SUCCESS);
 }
 
-void init_ifstream(std::ifstream &ifs, char *filename)
+int init_ifstream(std::ifstream &ifs, char *filename)
 {
     ifs.open(filename);
     if (ifs.fail())
-        print_err("Cannot open file.");
+        return (print_err("Cannot open file."));
+    return (SUCCESS);
 }
 
-void init_ofstream(std::ofstream &ofs, char *filename)
+int init_ofstream(std::ofstream &ofs, char *filename)
 {
     std::string ofilename = filename;
     ofilename.append(".replace");
-    ofs.open(ofilename);
+    ofs.open(ofilename.c_str());
     if (ofs.fail())
-        print_err("Cannot open file.");
+        return (print_err("Cannot open file."));
+    return (SUCCESS);
 }
 
 void replace_s1_to_s2(std::ifstream &ifs, std::ofstream &ofs, std::string &s1, std::string &s2)
@@ -64,11 +70,15 @@ int main(int argc, char *argv[])
     std::ofstream ofs;
 
     if (argc != 4)
+    {
         print_err("Wrong arguments");
-    init_s1s2(s1, s2, argv);
-    init_ifstream(ifs, argv[1]);
-    init_ofstream(ofs, argv[1]);
-     replace_s1_to_s2(ifs, ofs, s1, s2);
+        return (1);
+    }
+    if (init_s1s2(s1, s2, argv) == ERROR ||
+    init_ifstream(ifs, argv[1]) == ERROR ||
+    init_ofstream(ofs, argv[1]) == ERROR)
+        return (1);
+    replace_s1_to_s2(ifs, ofs, s1, s2);
     ifs.close();
     ofs.close();
     return (0);
