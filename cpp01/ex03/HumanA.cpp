@@ -1,10 +1,6 @@
 #include "HumanA.hpp"
 
-<<<<<<< HEAD
-HumanA::HumanA(std::string name, Weapon &weapon):name_(name),weapon_(weapon)
-=======
 HumanA::HumanA(std::string name, Weapon &weapon) : name_(name), weapon_(weapon)
->>>>>>> origin
 {
 }
 
