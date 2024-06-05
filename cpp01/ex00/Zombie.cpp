@@ -12,7 +12,6 @@ Zombie::Zombie(std::string name)
 
 Zombie::Zombie()
 {
-	
 }
 
 Zombie::~Zombie()

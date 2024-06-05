@@ -1,10 +1,12 @@
-NAME = ex03
+NAME = Animal
 CPP = c++
 CPPFLAGS = -Wall -Wextra -Werror -MMD -MP -std=c++98
 SRC = main.cpp\
-	HumanA.cpp\
-	HumanB.cpp\
-	Weapon.cpp
+	Animal.cpp\
+	Dog.cpp\
+	Cat.cpp\
+	WrongAnimal.cpp\
+	WrongCat.cpp
 
 OBJ = $(SRC:.cpp=.o)
 
