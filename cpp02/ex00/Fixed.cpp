@@ -9,7 +9,7 @@ Fixed::Fixed(void)
 Fixed::Fixed(const Fixed& other)
 {
     std::cout << "Copy constructor called" << std::endl;
-    value = other.getRawBits();;
+    value = other.getRawBits();
 }
 
 Fixed::~Fixed(void)
