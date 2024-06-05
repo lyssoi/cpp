@@ -1,6 +1,6 @@
 NAME = Animal
 CPP = c++
-CPPFLAGS = -Wall -Wextra -Werror -std=c++98
+CPPFLAGS = -Wall -Wextra -Werror -MMD -MP -std=c++98
 SRC = main.cpp\
 	Animal.cpp\
 	Dog.cpp\
@@ -8,14 +8,17 @@ SRC = main.cpp\
 
 OBJ = $(SRC:.cpp=.o)
 
+DEP = $(OBJ:.o=.d)
+
 all : $(NAME)
 
 $(NAME) : $(OBJ)
 		$(CPP) $(CPPFLAGS) -o $@ $^
 
+-include $(DEP)
 
 clean:
-	rm -rf  $(OBJ)
+	rm -rf  $(OBJ) $(DEP)
 
 fclean:
 	make clean
