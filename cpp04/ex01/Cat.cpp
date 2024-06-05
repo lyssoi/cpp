@@ -10,7 +10,7 @@ Cat::Cat()
 
 Cat::~Cat()
 {
-	delete[] brain_;
+	delete brain_;
 	std::cout  << "Cat destrucotr is called" << std::endl;
 }
 

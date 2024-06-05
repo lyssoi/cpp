@@ -11,7 +11,6 @@ Brain::Brain()
 
 Brain::~Brain()
 {
-	delete[] ideas;
 	std::cout << "Brain destructor is called" << std::endl;
 }
 
@@ -31,4 +30,5 @@ Brain& Brain::operator=(Brain const temp)
 		ideas[i] = temp.ideas[i];
 	}
 	std::cout << "Brain assignment constructor is called" << std::endl;
+	return (*this);
 }
