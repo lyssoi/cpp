@@ -47,7 +47,7 @@ ClapTrap::ClapTrap(std::string name)
 
 void ClapTrap::attack(const std::string &target)
 {
-	if (hitPoints <= 0 || energyPoints == 0)
+	if (hitPoints <= 0 || energyPoints <= 0)
 	{
 		std::cout << "no points" << std::endl;
 		return ;

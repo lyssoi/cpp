@@ -1,5 +1,5 @@
-#ifndef SCAVTRAP_HPP
-#define SCAVTRAP_HPP
+#ifndef FRAGTRAP_HPP
+#define FRAGTRAP_HPP
 #include "ClapTrap.hpp"
 
 class FragTrap : public ClapTrap{
@@ -9,6 +9,7 @@ class FragTrap : public ClapTrap{
 		FragTrap(std::string name);
 		~FragTrap();
 		FragTrap&operator=(FragTrap const &temp);
+		void attack(const std::string& target);
 		void highFivesGuys();
 };
 

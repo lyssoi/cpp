@@ -1,21 +1,53 @@
-#include "ScavTrap.hpp"
+#include "FragTrap.hpp"
 
 int main()
 {
-	ScavTrap scav;
-	ScavTrap scav2("scav2");
-	ScavTrap scav_is_copied("scav_copy");
-	ScavTrap scav_is_operated("scav_oper");
-	ScavTrap scav_copy(scav_is_copied);
-	ScavTrap scav_oper;
-	scav_oper = scav_is_operated;
+	{
+		std::cout << "==== 기본 생성자 && 네임 생성자 ====" << std::endl << std::endl;
+		FragTrap frag1;
+		FragTrap frag2("frag2");
 
-	scav.attack("scav2");
-	scav.takeDamage(3);
-	scav.beRepaired(5);
-	scav2.attack("scav");
-	scav2.takeDamage(3);
-	scav2.beRepaired(5);
-	scav2.guardGate();
+		frag1.attack("frag2");
+		frag1.takeDamage(3);
+		frag1.beRepaired(5);
+		frag1.highFivesGuys();
+		frag2.attack("frag1");
+		frag2.takeDamage(3);
+		frag2.beRepaired(5);
+		frag2.highFivesGuys();
+	}
+	std::cout << std::endl;
+	{
+		std::cout << "==== 복사 생성자 && 네임 생성자 ====" << std::endl << std::endl;
+		FragTrap frag1("frag1");
+		FragTrap frag2(frag1);
+
+		frag1.attack("frag2");
+		frag1.takeDamage(3);
+		frag1.beRepaired(5);
+		frag1.highFivesGuys();
+		frag2.attack("frag1");
+		frag2.takeDamage(3);
+		frag2.beRepaired(5);
+		frag2.highFivesGuys();
+	}
+	std::cout << std::endl;
+	{
+		std::cout << "==== 할당 연산자 && 네임 생성자 ====" << std::endl << std::endl;
+		
+		FragTrap frag1("frag1");
+		FragTrap frag2;
+
+		frag2 = frag1;
+
+		frag1.attack("frag2");
+		frag1.takeDamage(3);
+		frag1.beRepaired(5);
+		frag1.highFivesGuys();
+		frag2.attack("frag1");
+		frag2.takeDamage(3);
+		frag2.beRepaired(5);
+		frag2.highFivesGuys();
+	}
 	return (0);
 }

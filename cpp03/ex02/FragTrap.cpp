@@ -24,7 +24,7 @@ FragTrap& FragTrap::operator=(FragTrap const &temp)
 {
 	ClapTrap::operator=(temp);
 
-	std::cout << "FragTrap " << name << " assignment operator is called " << std::endl;
+	std::cout << "FragTrap " << name << " operator(=) is called " << std::endl;
 
 	return *this;
 }
@@ -35,6 +35,17 @@ FragTrap::FragTrap(std::string name):ClapTrap(name)
 	energyPoints = 100;
 	attackDamage = 30;
 	std::cout << "FragTrap " << name << " name constructor is called" << std::endl;
+}
+
+void FragTrap::attack(const std::string &target)
+{
+	if (hitPoints <= 0 || energyPoints == 0)
+	{
+		std::cout << "no points" << std::endl;
+		return ;
+	}
+	energyPoints--;
+	std::cout << "FragTrap " << name << " attacks " << target << ", causing " << attackDamage << " points of damage!" << std::endl;
 }
 
 void FragTrap::highFivesGuys()
