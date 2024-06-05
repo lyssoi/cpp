@@ -43,10 +43,10 @@ void replace_s1_to_s2(std::ifstream &ifs, std::ofstream &ofs, std::string &s1, s
 {
     std::string line;
 
-    while(!ifs.eof())
-    {
+    // while(!ifs.eof())
+    // {
         size_t pos = 0;
-        std::getline(ifs, line);
+        std::getline(ifs, line, '\0');
         while (true)
         {
             pos = line.find(s1, pos);
@@ -57,9 +57,9 @@ void replace_s1_to_s2(std::ifstream &ifs, std::ofstream &ofs, std::string &s1, s
             pos += s2.length();
         }
         ofs << line;
-        if (!ifs.eof())
-            ofs << std::endl;
-    }
+    //     if (!ifs.eof())
+    //         ofs << std::endl;
+    // }
 }
 
 int main(int argc, char *argv[])
