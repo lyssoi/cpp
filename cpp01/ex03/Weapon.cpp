@@ -5,9 +5,9 @@ Weapon::Weapon()
 	
 }
 
-Weapon::Weapon(std::string type)
+Weapon::Weapon(std::string type) : type_(type)
 {
-	type_ = type;
+	
 }
 
 void Weapon::setType(std::string type)
