@@ -21,7 +21,7 @@ Fixed::Fixed(const float num)
 Fixed::Fixed(const Fixed& other)
 {
     std::cout << "Copy constructor called" << std::endl;
-    *this = other;
+    value = other.getRawBits();
 }
 
 Fixed::~Fixed(void)
@@ -33,7 +33,8 @@ Fixed& Fixed::operator=(const Fixed& other)
 {
     std::cout << "Copy assignment operator called" << std::endl;
 
-    value = other.getRawBits();
+	if (this != &other)
+		value = other.getRawBits();
     return (*this);
 }
 
@@ -54,5 +55,11 @@ float Fixed::toFloat(void) const
 
 int Fixed::toInt(void) const
 {
-    return (static_cast<int>(value) >> fracbit);
+    return (static_cast<int> (value) >> fracbit);
+}
+
+std::ostream& operator<<(std::ostream& out, const Fixed& other)
+{
+	out << other.toFloat();
+	return out; 
 }

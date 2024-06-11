@@ -17,7 +17,7 @@ Fixed::Fixed(const float num)
 
 Fixed::Fixed(const Fixed& other)
 {
-    *this = other;
+	value = other.getRawBits();
 }
 
 Fixed::~Fixed(void)
@@ -26,8 +26,9 @@ Fixed::~Fixed(void)
 
 Fixed& Fixed::operator=(const Fixed& other)
 {
-    value = other.getRawBits();
-    return (*this);
+	if (this != &other)
+		value = other.getRawBits();
+	return (*this);
 }
 
 bool Fixed::operator>(const Fixed& other) const
@@ -124,16 +125,16 @@ const Fixed& Fixed::min(const Fixed &other1, const Fixed &other2)
 
 Fixed& Fixed::max(Fixed &other1,Fixed &other2)
 {
-    if (other1 < other2)
-        return other2;
-    return other1;
+    if (other1 >= other2)
+        return other1;
+    return other2;
 }
 
 const Fixed& Fixed::max(const Fixed &other1, const Fixed &other2)
 {
-    if (other1 < other2)
-        return other2;
-    return other1;
+    if (other1 >= other2)
+        return other1;
+    return other2;
 }
 
 int Fixed::getRawBits(void) const
@@ -154,4 +155,10 @@ float Fixed::toFloat(void) const
 int Fixed::toInt(void) const
 {
     return (static_cast<int>(value) >> fracbit);
+}
+
+std::ostream& operator <<(std::ostream& out, const Fixed& other)
+{
+    out << other.toFloat();
+    return out; 
 }
