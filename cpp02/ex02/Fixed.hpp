@@ -1,6 +1,7 @@
 #ifndef FIXED_HPP
 #define FIXED_HPP
 #include <iostream>
+#include <math.h>
 class Fixed{
     private:
         int value;
