@@ -8,11 +8,12 @@ int main()
 		FragTrap frag2("frag2");
 
 		frag1.attack("frag2");
-		frag1.takeDamage(3);
+		frag2.takeDamage(30);
 		frag1.beRepaired(5);
 		frag1.highFivesGuys();
+
 		frag2.attack("frag1");
-		frag2.takeDamage(3);
+		frag1.takeDamage(30);
 		frag2.beRepaired(5);
 		frag2.highFivesGuys();
 	}
@@ -23,11 +24,12 @@ int main()
 		FragTrap frag2(frag1);
 
 		frag1.attack("frag2");
-		frag1.takeDamage(3);
+		frag2.takeDamage(30);
 		frag1.beRepaired(5);
 		frag1.highFivesGuys();
+
 		frag2.attack("frag1");
-		frag2.takeDamage(3);
+		frag1.takeDamage(30);
 		frag2.beRepaired(5);
 		frag2.highFivesGuys();
 	}
@@ -41,11 +43,12 @@ int main()
 		frag2 = frag1;
 
 		frag1.attack("frag2");
-		frag1.takeDamage(3);
+		frag2.takeDamage(30);
 		frag1.beRepaired(5);
 		frag1.highFivesGuys();
+
 		frag2.attack("frag1");
-		frag2.takeDamage(3);
+		frag1.takeDamage(30);
 		frag2.beRepaired(5);
 		frag2.highFivesGuys();
 	}

@@ -8,11 +8,12 @@ int main()
 		ScavTrap scav2("scav2");
 
 		scav1.attack("scav2");
-		scav1.takeDamage(3);
+		scav2.takeDamage(20);
 		scav1.beRepaired(5);
 		scav1.guardGate();
+
 		scav2.attack("scav1");
-		scav2.takeDamage(3);
+		scav1.takeDamage(20);
 		scav2.beRepaired(5);
 		scav2.guardGate();
 	}
@@ -23,11 +24,12 @@ int main()
 		ScavTrap scav2(scav1);
 
 		scav1.attack("scav2");
-		scav1.takeDamage(3);
+		scav2.takeDamage(20);
 		scav1.beRepaired(5);
 		scav1.guardGate();
+
 		scav2.attack("scav1");
-		scav2.takeDamage(3);
+		scav1.takeDamage(20);
 		scav2.beRepaired(5);
 		scav2.guardGate();
 	}
@@ -41,11 +43,12 @@ int main()
 		scav2 = scav1;
 
 		scav1.attack("scav2");
-		scav1.takeDamage(3);
+		scav2.takeDamage(20);
 		scav1.beRepaired(5);
 		scav1.guardGate();
+
 		scav2.attack("scav1");
-		scav2.takeDamage(3);
+		scav1.takeDamage(20);
 		scav2.beRepaired(5);
 		scav2.guardGate();
 	}

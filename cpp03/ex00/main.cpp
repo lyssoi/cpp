@@ -8,10 +8,11 @@ int main()
 		ClapTrap clap2("clap2");
 
 		clap1.attack("clap2");
-		clap1.takeDamage(3);
+		clap2.takeDamage(0);
 		clap1.beRepaired(5);
+
 		clap2.attack("clap1");
-		clap2.takeDamage(3);
+		clap1.takeDamage(0);
 		clap2.beRepaired(5);
 	}
 		std::cout << std::endl;
@@ -21,10 +22,11 @@ int main()
 		ClapTrap clap2(clap1);
 
 		clap1.attack("clap2");
-		clap1.takeDamage(3);
+		clap2.takeDamage(0);
 		clap1.beRepaired(5);
+
 		clap2.attack("clap1");
-		clap2.takeDamage(3);
+		clap1.takeDamage(0);
 		clap2.beRepaired(5);
 	}
 		std::cout << std::endl;
@@ -37,10 +39,10 @@ int main()
 		clap2 = clap1;
 
 		clap1.attack("clap2");
-		clap1.takeDamage(3);
+		clap2.takeDamage(0);
 		clap1.beRepaired(5);
 		clap2.attack("clap1");
-		clap2.takeDamage(3);
+		clap1.takeDamage(0);
 		clap2.beRepaired(5);
 	}
 	return (0);
