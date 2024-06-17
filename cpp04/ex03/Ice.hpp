@@ -10,6 +10,6 @@ class Ice : public AMateria
 		Ice(Ice const &temp);
 		Ice &operator=(Ice const &temp);
 		Ice* clone() const;
-		void use(Icharacter& target);
+		void use(ICharacter& target);
 };
 # endif

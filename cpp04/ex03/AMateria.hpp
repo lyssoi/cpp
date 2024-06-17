@@ -14,6 +14,6 @@ class AMateria
 		AMateria& operator=(AMateria const &temp);
 		std::string const & getType() const;
 		virtual AMateria* clone() const = 0;
-		virtual void use(Icharacter& target) = 0;
+		virtual void use(ICharacter& target) = 0;
 };
 #endif;
