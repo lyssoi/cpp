@@ -16,16 +16,14 @@ Dog::~Dog()
 
 Dog::Dog(Dog const &temp):Animal(temp)
 {
-	brain = new Brain();
-	for (int i = 0; i < 100; i++)
-	{
-		brain[i] = temp.brain[i];
-	}
+	*this = temp;
 	std::cout << "Dog copy constructor is called " << std::endl;
 }
 
 Dog& Dog::operator=(Dog const &temp)
 {
+	if (this == &temp)
+		return (*this);
 	Animal::operator=(temp);
 	brain = new Brain();
 	for (int i = 0; i < 100; i++)

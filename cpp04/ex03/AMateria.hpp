@@ -10,10 +10,10 @@ class AMateria
 		AMateria();
 		AMateria(std::string const &type);
 		AMateria(AMateria const &temp);
-		virtual ~AMateria();
+		virtual ~AMateria(){}
 		AMateria& operator=(AMateria const &temp);
 		std::string const & getType() const;
 		virtual AMateria* clone() const = 0;
 		virtual void use(ICharacter& target) = 0;
 };
-#endif;
+#endif

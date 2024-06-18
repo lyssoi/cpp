@@ -16,18 +16,17 @@ Cat::~Cat()
 
 Cat::Cat(Cat const &temp):Animal(temp)
 {
-	brain = new Brain();
-	for (int i = 0; i < 100; i++)
-	{
-		brain[i] = temp.brain[i];
-	}
+	*this = temp;
 	std::cout << "Cat copy constructor is called " << std::endl;
 }
 
 Cat& Cat::operator=(Cat const &temp)
 {
+	if (this == &temp)
+		return (*this);
 	Animal::operator=(temp);
-	brain = new Brain();
+	if (brain == NULL)
+		brain = new Brain();
 	for (int i = 0; i < 100; i++)
 	{
 		brain[i] = temp.brain[i];

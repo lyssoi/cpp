@@ -13,12 +13,14 @@ Animal::~Animal()
 
 Animal::Animal(Animal const &temp)
 {
-	type = temp.type;
+	*this = temp;
 	std::cout << "Animal copy constructor is called " << std::endl;
 }
 
 Animal& Animal::operator=(Animal const &temp)
 {
+	if (this == &temp)
+		return (*this);
 	type = temp.type;
 	std::cout << "Animal assignment operator is called " << std::endl;
 	return (*this);

@@ -17,13 +17,14 @@ Cure::Cure(Cure const &temp)
 Cure &Cure::operator=(Cure const &temp)
 {
 	if (this == &temp)
-		return ;
+		return (*this);
 	this->type = temp.type;
+	return (*this);
 }
 
 void Cure::use(ICharacter& target)
 {
-	std::cout << "* heals" << target.getName() << "’s wounds *" << std::endl;
+	std::cout << "* heals " << target.getName() << "’s wounds *" << std::endl;
 }
 
 Cure* Cure::clone() const
