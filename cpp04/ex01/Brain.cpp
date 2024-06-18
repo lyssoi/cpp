@@ -32,3 +32,22 @@ Brain& Brain::operator=(Brain const temp)
 	std::cout << "Brain assignment constructor is called" << std::endl;
 	return (*this);
 }
+
+const std::string *Brain::getBrain()
+{
+	return this->ideas;
+}
+
+void Brain::setIdea(int idx, std::string idea)
+{
+	if (idx < 0 || idx >= 100)
+		return ;
+	ideas[idx] = idea;
+}
+
+const std::string Brain::getIdea(int idx)
+{
+	if (idx < 0 || idx >= 100)
+		return (0);
+	return (ideas[idx]);
+}

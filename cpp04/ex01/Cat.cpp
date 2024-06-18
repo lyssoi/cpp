@@ -16,22 +16,18 @@ Cat::~Cat()
 
 Cat::Cat(Cat const &temp):Animal(temp)
 {
-	brain = new Brain();
-	for (int i = 0; i < 100; i++)
-	{
-		brain[i] = temp.brain[i];
-	}
+	*this = temp;
 	std::cout << "Cat copy constructor is called " << std::endl;
 }
 
 Cat& Cat::operator=(Cat const &temp)
 {
+	if (this == &temp)
+		return (*this);
 	Animal::operator=(temp);
-	brain = new Brain();
-	for (int i = 0; i < 100; i++)
-	{
-		brain[i] = temp.brain[i];
-	}
+	if (this->brain != NULL)
+		delete this->brain;
+	this->brain = new Brain(*(temp.brain));
 	std::cout << "Cat assignment operator is called " << std::endl;
 	return (*this);
 }
@@ -39,4 +35,19 @@ Cat& Cat::operator=(Cat const &temp)
 void  Cat::makeSound(void) const
 {
 	std::cout << "caaaaaaaaaaaatt" << std::endl;
+}
+
+void Cat::setBrainIdea(int idx, std::string idea)
+{
+	brain->setIdea(idx, idea);
+}
+
+const std::string Cat::getBrainIdea(int idx)
+{
+	return brain->getIdea(idx);
+}
+
+const Brain *getBrain()
+{
+	return brain;
 }
