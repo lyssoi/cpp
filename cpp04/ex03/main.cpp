@@ -6,15 +6,8 @@
 #include "MateriaSource.hpp"
 #include "Character.hpp"
 
-void leaks()
-{
-	system("leaks ex03");
-}
-
 int main()
 {
-
-	atexit(leaks);
 	IMateriaSource* src = new MateriaSource();
 	src->learnMateria(new Ice());
 	src->learnMateria(new Ice());
