@@ -4,14 +4,8 @@
 #include "WrongAnimal.hpp"
 #include "WrongCat.hpp"
 
-void leaks()
-{
-	system("leaks Brain");
-}
-
 int main()
 {
-	atexit(leaks);
 	Animal *animals[100];
 	for (int i = 0; i < 100; i++)
 	{

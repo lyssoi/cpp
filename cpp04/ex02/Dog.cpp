@@ -14,7 +14,7 @@ Dog::~Dog()
 	std::cout  << "Dog destrucotr is called" << std::endl;
 }
 
-Dog::Dog(Dog const &temp):Animal(temp), brain(0)
+Dog::Dog(Dog const &temp):Animal(temp), brain(NULL)
 {
 	*this = temp;
 	std::cout << "Dog copy constructor is called " << std::endl;
