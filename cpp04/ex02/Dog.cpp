@@ -11,10 +11,10 @@ Dog::Dog()
 Dog::~Dog()
 {
 	delete brain;
-	std::cout << "Dog destrucotr is called" << std::endl;
+	std::cout  << "Dog destrucotr is called" << std::endl;
 }
 
-Dog::Dog(Dog const &temp):Animal(temp)
+Dog::Dog(Dog const &temp):Animal(temp), brain(0)
 {
 	*this = temp;
 	std::cout << "Dog copy constructor is called " << std::endl;
@@ -25,16 +25,19 @@ Dog& Dog::operator=(Dog const &temp)
 	if (this == &temp)
 		return (*this);
 	Animal::operator=(temp);
-	brain = new Brain();
-	for (int i = 0; i < 100; i++)
-	{
-		brain[i] = temp.brain[i];
-	}
+	if (this->brain != 0)
+		delete this->brain;
+	this->brain = new Brain(*(temp.brain));
 	std::cout << "Dog assignment operator is called " << std::endl;
 	return (*this);
 }
 
 void  Dog::makeSound(void) const
 {
-	std::cout << "dooooooooooooog" << std::endl;
+	std::cout << "Dooooooooooooog" << std::endl;
+}
+
+const Brain *Dog::getBrain()
+{
+	return (this->brain);
 }

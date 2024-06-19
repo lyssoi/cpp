@@ -14,7 +14,7 @@ Cat::~Cat()
 	std::cout  << "Cat destrucotr is called" << std::endl;
 }
 
-Cat::Cat(Cat const &temp):Animal(temp)
+Cat::Cat(Cat const &temp):Animal(temp), brain(NULL)
 {
 	*this = temp;
 	std::cout << "Cat copy constructor is called " << std::endl;
@@ -37,17 +37,7 @@ void  Cat::makeSound(void) const
 	std::cout << "caaaaaaaaaaaatt" << std::endl;
 }
 
-void Cat::setBrainIdea(int idx, std::string idea)
+const Brain *Cat::getBrain()
 {
-	brain->setIdea(idx, idea);
-}
-
-const std::string Cat::getBrainIdea(int idx)
-{
-	return brain->getIdea(idx);
-}
-
-const Brain *getBrain()
-{
-	return brain;
+	return (this->brain);
 }

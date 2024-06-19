@@ -33,21 +33,7 @@ Brain& Brain::operator=(Brain const temp)
 	return (*this);
 }
 
-const std::string *Brain::getBrain()
+const std::string *Brain::getIdeas()
 {
 	return this->ideas;
-}
-
-void Brain::setIdea(int idx, std::string idea)
-{
-	if (idx < 0 || idx >= 100)
-		return ;
-	ideas[idx] = idea;
-}
-
-const std::string Brain::getIdea(int idx)
-{
-	if (idx < 0 || idx >= 100)
-		return (0);
-	return (ideas[idx]);
 }
