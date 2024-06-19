@@ -18,7 +18,7 @@ Cure &Cure::operator=(Cure const &temp)
 {
 	if (this == &temp)
 		return (*this);
-	this->type = temp.type;
+	this->type = temp.getType();
 	return (*this);
 }
 

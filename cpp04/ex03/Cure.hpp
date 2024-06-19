@@ -2,6 +2,7 @@
 # define CURE_HPP
 #include "ICharacter.hpp"
 #include "AMateria.hpp"
+
 class Cure : public AMateria
 {
 	public:
@@ -12,4 +13,5 @@ class Cure : public AMateria
 		Cure* clone() const;
 		void use(ICharacter& target);
 };
+
 # endif

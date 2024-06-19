@@ -2,6 +2,7 @@
 #define CHARACTER_HPP
 #include "ICharacter.hpp"
 #include "AMateria.hpp"
+
 class Character : public ICharacter {
 	private:
 		std::string name;
@@ -14,6 +15,7 @@ class Character : public ICharacter {
 		~Character();
 		Character &operator=(Character const &temp);
 		std::string const &getName() const;
+		AMateria *const *getInventory() const;
 		void equip(AMateria *m);
 		void unequip(int idx);
 		void use(int idx, ICharacter &target);
@@ -21,4 +23,5 @@ class Character : public ICharacter {
 		void cleanFloor();
 		void cleanInventory();
 };
+
 #endif

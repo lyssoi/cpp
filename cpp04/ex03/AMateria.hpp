@@ -2,6 +2,7 @@
 #define AMATERIA_HPP
 #include <iostream>
 #include "ICharacter.hpp"
+
 class AMateria
 {
 	protected:
@@ -16,4 +17,5 @@ class AMateria
 		virtual AMateria* clone() const = 0;
 		virtual void use(ICharacter& target) = 0;
 };
+
 #endif

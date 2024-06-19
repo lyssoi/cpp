@@ -11,14 +11,14 @@ AMateria::AMateria(std::string const & type)
 
 AMateria::AMateria(AMateria const &temp)
 {
-	this->type = temp.type;
+	*this = temp;
 }
 
 AMateria& AMateria::operator=(AMateria const &temp)
 {
 	if (&temp == this)
 		return (*this);
-	this->type = temp.type;
+	this->type = temp.getType();
 	return (*this);
 }
 

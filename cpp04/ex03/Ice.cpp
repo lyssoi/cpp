@@ -18,7 +18,7 @@ Ice &Ice::operator=(Ice const &temp)
 {
 	if (this == &temp)
 		return (*this);
-	this->type = temp.type;
+	this->type = temp.getType();
 	return (*this);
 }
 

@@ -1,6 +1,6 @@
 NAME = ex03
 CPP = c++
-CPPFLAGS = -Wall -Wextra -Werror -MMD -MP -std=c++98
+CPPFLAGS = -Wall -Wextra -Werror  -MMD -MP -std=c++98
 SRC = AMateria.cpp\
 	Character.cpp\
 	Cure.cpp\
