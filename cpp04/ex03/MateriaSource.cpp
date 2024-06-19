@@ -1,6 +1,6 @@
 #include "MateriaSource.hpp"
 
-MateriaSource::MateriaSource()
+MateriaSource::MateriaSource() : IMateriaSource()
 {
 	for (int i = 0; i < 4; i++)
 	{
@@ -8,7 +8,7 @@ MateriaSource::MateriaSource()
 	}
 }
 
-MateriaSource::MateriaSource(MateriaSource const &temp)
+MateriaSource::MateriaSource(MateriaSource const &temp) : IMateriaSource(temp)
 {
 	for (int i = 0; i < 4; i++)
 	{

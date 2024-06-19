@@ -1,6 +1,6 @@
 #include "Character.hpp"
 
-Character::Character()
+Character::Character() : ICharacter()
 {
 	name = "";
 	for (int i = 0; i < 4; i++)
@@ -10,7 +10,7 @@ Character::Character()
 	}
 }
 
-Character::Character(Character const &temp)
+Character::Character(Character const &temp) : ICharacter(temp)
 {
 	*this = temp;
 	for (int i = 0; i < 4; i++)

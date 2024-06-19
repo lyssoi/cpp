@@ -9,7 +9,7 @@ Ice::~Ice()
 {
 }
 
-Ice::Ice(Ice const &temp)
+Ice::Ice(Ice const &temp) : AMateria(temp)
 {
 	*this = temp;
 }

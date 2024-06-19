@@ -9,7 +9,7 @@ Cure::~Cure()
 {
 }
 
-Cure::Cure(Cure const &temp)
+Cure::Cure(Cure const &temp) : AMateria(temp)
 {
 	*this = temp;
 }
