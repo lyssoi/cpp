@@ -21,7 +21,7 @@ Animal& Animal::operator=(Animal const &temp)
 {
 	if (this == &temp)
 		return (*this);
-	type = temp.type;
+	type = temp.getType();
 	std::cout << "Animal assignment operator is called " << std::endl;
 	return (*this);
 }

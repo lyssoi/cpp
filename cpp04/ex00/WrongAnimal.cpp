@@ -13,13 +13,15 @@ WrongAnimal::~WrongAnimal()
 
 WrongAnimal::WrongAnimal(WrongAnimal const &temp)
 {
-	type = temp.type;
+	*this = temp;
 	std::cout << "WrongAnimal copy constructor is called " << std::endl;
 }
 
 WrongAnimal& WrongAnimal::operator=(WrongAnimal const &temp)
 {
-	type = temp.type;
+	if (this == &temp)
+		return (*this);
+	type = temp.getType();
 	std::cout << "WrongAnimal assignment operator is called " << std::endl;
 	return (*this);
 }
