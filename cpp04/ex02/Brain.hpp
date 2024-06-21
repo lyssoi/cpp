@@ -12,7 +12,9 @@ class Brain
 		~Brain();
 		Brain(Brain const &ref);
 		Brain& operator=(Brain const temp);
-		const std::string *getIdeas();
+		const std::string *getIdeas() const;
+		void setIdeas(std::string str);
+		void printIdeas() const;
 };
 
 #endif

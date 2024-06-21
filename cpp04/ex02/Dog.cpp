@@ -41,3 +41,14 @@ const Brain *Dog::getBrain()
 {
 	return (this->brain);
 }
+
+
+void Dog::setBrain(std::string str)
+{
+	this->brain->setIdeas(str);
+}
+
+void Dog::printBrain() const
+{
+	this->brain->printIdeas();
+}

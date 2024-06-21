@@ -12,6 +12,8 @@ class Cat : public Animal
 		Cat(Cat const &temp);
 		Cat &operator=(Cat const &temp);
 		void makeSound(void) const;
-		const Brain *getBrain();
+		const Brain *getBrain() const;
+		void setBrain(std::string str);
+		void printBrain() const;
 };
 #endif

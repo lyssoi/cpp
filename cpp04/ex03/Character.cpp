@@ -70,12 +70,14 @@ void Character::equip(AMateria *m)
 	{
 		if (inventory[i] == 0)
 		{
-			inventory[i] = m;
+			inventory[i] = m->clone();
+			delete m;
 			std::cout << m->getType() << " has been equipped in the inventory. " << std::endl;
 			return ;
 		}
 	}
 	std::cout << m->getType() << " has not been equipped in the inventory because inventory is full. " << std::endl;
+	delete m;
 }
 
 void Character::unequip(int idx)
@@ -85,9 +87,9 @@ void Character::unequip(int idx)
 		std::cout << "idx is wrong! " << std::endl;
 		return ;
 	}
+	std::cout << inventory[idx]->getType() << " has been unequipped" << std::endl;
 	left(inventory[idx]);
 	inventory[idx] = 0;
-	std::cout << inventory[idx]->getType() << " has been unequipped" << std::endl;
 }
 
 void Character::use(int idx, ICharacter &target)

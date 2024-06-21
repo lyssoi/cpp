@@ -37,7 +37,17 @@ void  Cat::makeSound(void) const
 	std::cout << "caaaaaaaaaaaatt" << std::endl;
 }
 
-const Brain *Cat::getBrain()
+const Brain *Cat::getBrain() const
 {
 	return (this->brain);
+}
+
+void Cat::setBrain(std::string str)
+{
+	this->brain->setIdeas(str);
+}
+
+void Cat::printBrain() const
+{
+	this->brain->printIdeas();
 }

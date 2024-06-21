@@ -13,5 +13,7 @@ class Dog : public Animal
 		Dog &operator=(Dog const &temp);
 		void makeSound(void) const;
 		const Brain *getBrain();
+		void setBrain(std::string str);
+		void printBrain() const;
 };
 #endif
