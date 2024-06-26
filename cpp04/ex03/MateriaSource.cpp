@@ -59,14 +59,7 @@ void MateriaSource::learnMateria(AMateria *m)
 			return ;
 		}
 	}
-	std::cout << "materiasource inventory is full! clean first materiasource and learn materia" << std::endl;
-	delete inventory[0];
-	inventory[0] = NULL;
-	for (int i = 1; i < 4; i++)
-	{
-		inventory[i - 1] = inventory[i];
-	}
-	inventory[3] = m;
+	std::cout << "materiasource inventory is full!" << std::endl;
 }
 
 AMateria *MateriaSource::createMateria(std::string const &type)
