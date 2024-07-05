@@ -11,7 +11,6 @@ int main()
 
     Bureaucrat kim = Bureaucrat("kim");
     Bureaucrat park = Bureaucrat("park");
-
     try
     {
         std::cout << kim << std::endl;
@@ -19,6 +18,9 @@ int main()
         kim.incrementGrade(100);
         kim.decrementGrade(10);
         park.incrementGrade(150);
+        std::cout << kim << std::endl;
+        std::cout << park << std::endl;
+
     }
     catch (const std::exception &e)
     {

@@ -1,12 +1,8 @@
 #include "Bureaucrat.hpp"
 
-Bureaucrat::Bureaucrat()
-{
-}
 
-Bureaucrat::Bureaucrat(const std::string &name)
+Bureaucrat::Bureaucrat(const std::string &name) : name(name)
 {
-    this->name = name;
     grade = 150;
 }
 
@@ -19,8 +15,7 @@ Bureaucrat::Bureaucrat(const Bureaucrat &temp)
 Bureaucrat &Bureaucrat::operator=(const Bureaucrat &temp)
 {
     if (this == &temp)
-        return;
-    this->name = temp.getName();
+        return (*this);
     this->grade = temp.getGrade();
     return (*this);
 }
@@ -35,7 +30,7 @@ void Bureaucrat::decrementGrade(int num)
 void Bureaucrat::incrementGrade(int num)
 {
     this->grade -= num;
-    if (this->grade < 0)
+    if (this->grade < 1)
         throw Bureaucrat::GradeTooHighException();
 }
 
