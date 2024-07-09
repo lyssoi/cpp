@@ -8,6 +8,7 @@ class RobotmyRequestForm : public AForm
 {
 public:
     RobotmyRequestForm(const string &name);
+    void execute(const Bureaucrat &executer);
 };
 
 #endif
