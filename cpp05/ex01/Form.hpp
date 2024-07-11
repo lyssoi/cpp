@@ -14,6 +14,7 @@ private:
     const int grade_for_execute;
 
 public:
+    Form();
     ~Form(){};
     Form(const std::string &name, int grade_for_sign, int grade_for_execute);
     Form(const Form &temp);
@@ -26,18 +27,13 @@ public:
     class GradeTooHighException : public std::exception
     {
     public:
-        const char *what() const throw()
-        {
-            return ("grade too high!");
-        }
+        const char *what() const throw();
     };
     class GradeTooLowException : public std::exception
     {
     public:
-        const char *what() const throw()
-        {
-            return ("grade too low!");
-        }
+        const char *what() const throw();
+        
     };
 };
 

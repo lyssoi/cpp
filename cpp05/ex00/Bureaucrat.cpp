@@ -1,11 +1,21 @@
 #include "Bureaucrat.hpp"
 
+const char *Bureaucrat::GradeTooLowException::what() const throw() {
+    return ("grade too low!");
+}
+
+const char *Bureaucrat::GradeTooHighException::what() const throw() {
+    return ("grade too high!");
+}
 
 Bureaucrat::Bureaucrat(const std::string &name) : name(name)
 {
     grade = 150;
 }
 
+Bureaucrat::Bureaucrat() : name("sol"){
+    grade = 150;
+};
 Bureaucrat::~Bureaucrat(){};
 Bureaucrat::Bureaucrat(const Bureaucrat &temp)
 {
