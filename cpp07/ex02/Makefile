@@ -5,13 +5,17 @@ SRC = main.cpp
 
 OBJ = $(SRC:.cpp=.o)
 
+DEP = $(OBJ:.o=.d)
+
 all : $(NAME)
 
 $(NAME) : $(OBJ)
 		$(CPP) $(CPPFLAGS) -o $@ $^
 
+-include $(DEP)
+
 clean:
-	rm -rf  $(OBJ)
+	rm -rf  $(OBJ) $(DEP)
 
 fclean:
 	make clean
