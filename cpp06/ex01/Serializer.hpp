@@ -10,6 +10,10 @@ struct Data {
 
 class Serializer {
     public:
+        Serializer();
+        ~Serializer();
+        Serializer(const Serializer &temp);
+        Serializer &operator=(const Serializer &tmep);
         uintptr_t serialize(Data *ptr);
         Data *deserialize(uintptr_t raw);
 };

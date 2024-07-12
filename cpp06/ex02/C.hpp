@@ -4,8 +4,9 @@
 #include "Base.hpp"
 
 class C : public Base {
-    private:
-        std::string type;
+    public:
+        C(){};
+        ~C(){};
 };
 
 #endif
