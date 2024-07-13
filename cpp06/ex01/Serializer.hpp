@@ -9,11 +9,12 @@ struct Data {
 };
 
 class Serializer {
+    private:
+        Serializer(const Serializer &temp);
+        Serializer &operator=(const Serializer &tmep);
     public:
         Serializer();
         ~Serializer();
-        Serializer(const Serializer &temp);
-        Serializer &operator=(const Serializer &tmep);
         uintptr_t serialize(Data *ptr);
         Data *deserialize(uintptr_t raw);
 };

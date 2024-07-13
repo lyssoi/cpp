@@ -4,8 +4,11 @@ Serializer::Serializer() {
 }
 Serializer::~Serializer(){};
 Serializer::Serializer(const Serializer &temp) { 
+    *this = temp;
 };
 Serializer &Serializer::operator=(const Serializer &temp) {
+    if (this == &temp)
+        return (*this);
     return (*this);
 }
 
