@@ -1,4 +1,10 @@
-int main (int argc, int argv) {
+#include <iostream>
+#include <fstream>
+#include <string>
+
+int main (int argc, char *argv) {
+    //argv를 strng으로 만들어서 ifstream으로 넣음!;
+    ifstream file("");
     //file을 argument로 받아야함.
     // file은  "date | value"의 포맷을 지켜야함
     // valid date => Year-Month-Day.
