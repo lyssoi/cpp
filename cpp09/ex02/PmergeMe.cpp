@@ -1,7 +1,7 @@
 #include "PmergeMe.hpp"
 #include <iostream>
 
-std::vector<int> PMergeMe::binaryinaryinsertion(int num, std::vector<int>d)
+std::vector<int> PMergeMe::binaryinaryinsertion(std::pair<int, int> item, std::vector<int>d)
 {
     int start_idx = 0;
     int mid = 0;
