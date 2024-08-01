@@ -1,8 +1,8 @@
-NAME = PmergeMe
+NAME = RPN
 CPP = c++
 CPPFLAGS = -Wall -Wextra -Werror -MMD -MP -fsanitize=address -std=c++98
 SRC = main.cpp\
-	PmergeMe.cpp
+	BitcoinExchange.cpp
 
 OBJ = $(SRC:.cpp=.o)
 
