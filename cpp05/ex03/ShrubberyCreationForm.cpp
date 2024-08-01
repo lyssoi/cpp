@@ -4,8 +4,7 @@
 #include <iostream>
 #include <fstream>
 
-ShruberryCreationForm::ShruberryCreationForm() : AForm("sol", 25, 5) {
-
+ShruberryCreationForm::ShruberryCreationForm() : AForm("ShruberryCreationForm", 145, 137) {
 }
 ShruberryCreationForm::~ShruberryCreationForm() {};
 
@@ -19,8 +18,12 @@ const char *ShruberryCreationForm::fileOpenErrorException:: what() const throw()
     return ("file not open!");
 }
 
-ShruberryCreationForm::ShruberryCreationForm(const std::string &name) : AForm(name, 145, 137)
+ShruberryCreationForm::ShruberryCreationForm(const std::string &target) : AForm("ShruberryCreationForm", 145, 137), target(target)
 {
+}
+
+const std::string &ShruberryCreationForm::getTarget() const {
+    return (this->target);
 }
 
 void ShruberryCreationForm::execute(const Bureaucrat &executor) const
@@ -64,5 +67,5 @@ void ShruberryCreationForm::execute(const Bureaucrat &executor) const
     outFile << "  ├── ShruberryCreationForm.hpp\n";
     outFile << "  └── main.cpp\n";
     outFile.close();
-    std::cout << executor.getName() << " create file" << std::endl;
+    std::cout << getTarget() << " create file" << std::endl;
 }

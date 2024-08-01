@@ -28,9 +28,9 @@ int main()
     {
 
         Bureaucrat kim = Bureaucrat("kim");
-        PresidentialPardonForm pForm = PresidentialPardonForm("presidential");
-        RobotmyRequestForm rForm = RobotmyRequestForm("robot");
-        ShruberryCreationForm sForm = ShruberryCreationForm("shruberry");
+        PresidentialPardonForm pForm("trumph");
+        RobotmyRequestForm rForm("robot");
+        ShruberryCreationForm sForm("home");
         std::cout << kim << std::endl;
         kim.incrementGrade(145);
         std::cout << kim << std::endl;

@@ -5,13 +5,16 @@
 
 class ShruberryCreationForm : public AForm
 {
-public:
+private:
+    const std::string target;
     ShruberryCreationForm();
-    ~ShruberryCreationForm();
     ShruberryCreationForm(const ShruberryCreationForm &temp);
     ShruberryCreationForm &operator=(const ShruberryCreationForm &temp);
-    ShruberryCreationForm(const std::string &name);
+public:
+    ~ShruberryCreationForm();    
+    ShruberryCreationForm(const std::string &target);
     void execute(const Bureaucrat &executor) const;
+    const std::string &getTarget() const;
     class fileOpenErrorException : public std::exception {
         public :
             const char *what() const throw();
