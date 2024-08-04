@@ -1,6 +1,20 @@
 #include "PmergeMe.hpp"
 #include <iostream>
 
+PmergeMe::PmergeMe(const PmergeMe &tmp) {
+    *this = tmp;
+}
+
+PmergeMe &PmergeMe::operator=(const PmergeMe &tmp){
+    this->l_not_sorted = tmp.l_not_sorted;
+    this->l_sorted = tmp.l_sorted;
+    this->l_time = tmp.l_time;
+    this->v_not_sorted = tmp.v_not_sorted;
+    this->v_sorted = tmp.v_sorted;
+    this->v_time = tmp.v_time;
+    return (*this);
+};
+
 void PmergeMe::print() {
     // std::cout << "===Vector=== " << std::endl;
     std::cout << "Before ";
@@ -28,6 +42,23 @@ void PmergeMe::print() {
     // std::cout << std::endl;
     std::cout << "Time to process a range of 3000 elements with std::" << "list" << " : " << l_time << " us" <<std::endl;
 }
+
+
+void PmergeMe::timeoutput(struct timeval start, struct timeval end, int type) {
+    long s = end.tv_sec - start.tv_sec;
+    long ms = end.tv_usec - start.tv_usec;
+    long long us = s * 1000000 + ms;
+
+    if (type == VECTOR) {
+        v_time = us;
+    } else if (type == LIST) {
+        l_time = us;
+    } else {
+        throw std::runtime_error("Wrong type");
+    }
+    //std::cout << "Time to process a range of 3000 elements with std::" << container << " : " << us << " us" <<std::endl;
+}
+
 
 void PmergeMe::vectorRun(int argc, char *argv[]) {
     struct timeval start, end;
@@ -57,6 +88,74 @@ std::vector<std::pair<int, int> > PmergeMe::vectorInit(int argc, char *argv[]) {
     }
     return not_sorted;
 }
+
+
+void PmergeMe::binaryinaryinsertion(std::pair<int, int> item, std::vector<std::pair<int, int> >&d)
+{
+    int start_idx = 0;
+    int mid = 0;
+    int last_idx = d.size();
+    while (start_idx < last_idx) {
+        mid = (start_idx + last_idx) / 2;
+        if (d[mid].first < item.first) {
+            start_idx = mid + 1;
+        } else {
+            last_idx = mid;
+        }
+    }
+    d.insert(d.begin() + start_idx, item);
+}
+
+std::vector<std::pair<int, int> > PmergeMe::mergeInsertion(std::vector<std::pair<int, int> >&d) {
+    std::vector<std::pair<int, int> > a;
+    std::vector<std::pair<int, int> > newA;
+    std::vector<std::pair<int, int> > oldA;
+    std::vector<std::pair<int, int> > newB;
+    std::vector<std::pair<int, int> > oldB;
+    int n = d.size();
+
+    if (n <= 1) {
+        return d;
+    }
+    for (int i = 0; i < n/2 ; i++) {
+        if (d[i] > d[i + n / 2]) {
+            a.push_back(std::make_pair(d[i].first, i));
+            oldA.push_back(d[i]);
+            oldB.push_back(d[i + n / 2]);
+        } else {
+            a.push_back(std::make_pair(d[i + n / 2].first, i));
+            oldB.push_back(d[i]);
+            oldA.push_back(d[i + n / 2]);
+        }
+    }
+    if (n % 2 == 1) {
+        oldB.push_back(d[n - 1]);
+    }
+    newA = mergeInsertion(a);
+    for (int i = 0; i < n / 2; i++) {
+        int newIdx = newA[i].second;
+        newB.push_back(oldB.at(newIdx));
+    }
+    if (n % 2 == 1) {
+        newB.push_back(oldB.at(n / 2));
+    }
+    for (int i = 0; i < n / 2; i++) {
+        newA[i].second = oldA[newA[i].second].second;
+    }
+    newA.insert(newA.begin(), newB.at(0));
+
+    int tk = 1;
+    int two = 2;
+    while (tk < n / 2 + n % 2) {
+        int t_m = std::min(two * 2 - tk, n / 2 + n % 2);
+        for (int i = t_m; i >= tk + 1; i--) {
+            binaryinaryinsertion(newB[i - 1], newA);
+        }
+        two *= 2;
+        tk = two - tk;
+    }
+    return newA;
+};
 
 
 void PmergeMe::listRun(int argc, char *argv[]) {
@@ -161,87 +260,3 @@ void PmergeMe::binaryinaryinsertion(std::pair<int, int> item, std::list<std::pai
     }
     d.insert(start_it, item);
 }
-
-
-void PmergeMe::timeoutput(struct timeval start, struct timeval end, int type) {
-    long s = end.tv_sec - start.tv_sec;
-    long ms = end.tv_usec - start.tv_usec;
-    long long us = s * 1000000 + ms;
-
-    if (type == VECTOR) {
-        v_time = us;
-    } else if (type == LIST) {
-        l_time = us;
-    } else {
-        throw std::runtime_error("Wrong type");
-    }
-    //std::cout << "Time to process a range of 3000 elements with std::" << container << " : " << us << " us" <<std::endl;
-}
-
-void PmergeMe::binaryinaryinsertion(std::pair<int, int> item, std::vector<std::pair<int, int> >&d)
-{
-    int start_idx = 0;
-    int mid = 0;
-    int last_idx = d.size();
-    while (start_idx < last_idx) {
-        mid = (start_idx + last_idx) / 2;
-        if (d[mid].first < item.first) {
-            start_idx = mid + 1;
-        } else {
-            last_idx = mid;
-        }
-    }
-    d.insert(d.begin() + start_idx, item);
-}
-
-
-std::vector<std::pair<int, int> > PmergeMe::mergeInsertion(std::vector<std::pair<int, int> >&d) {
-    std::vector<std::pair<int, int> > a;
-    std::vector<std::pair<int, int> > newA;
-    std::vector<std::pair<int, int> > oldA;
-    std::vector<std::pair<int, int> > newB;
-    std::vector<std::pair<int, int> > oldB;
-    int n = d.size();
-
-    if (n <= 1) {
-        return d;
-    }
-    for (int i = 0; i < n/2 ; i++) {
-        if (d[i] > d[i + n / 2]) {
-            a.push_back(std::make_pair(d[i].first, i));
-            oldA.push_back(d[i]);
-            oldB.push_back(d[i + n / 2]);
-        } else {
-            a.push_back(std::make_pair(d[i + n / 2].first, i));
-            oldB.push_back(d[i]);
-            oldA.push_back(d[i + n / 2]);
-        }
-    }
-    if (n % 2 == 1) {
-        oldB.push_back(d[n - 1]);
-    }
-    newA = mergeInsertion(a);
-    for (int i = 0; i < n / 2; i++) {
-        int newIdx = newA[i].second;
-        newB.push_back(oldB.at(newIdx));
-    }
-    if (n % 2 == 1) {
-        newB.push_back(oldB.at(n / 2));
-    }
-    for (int i = 0; i < n / 2; i++) {
-        newA[i].second = oldA[newA[i].second].second;
-    }
-    newA.insert(newA.begin(), newB.at(0));
-
-    int tk = 1;
-    int two = 2;
-    while (tk < n / 2 + n % 2) {
-        int t_m = std::min(two * 2 - tk, n / 2 + n % 2);
-        for (int i = t_m; i >= tk + 1; i--) {
-            binaryinaryinsertion(newB[i - 1], newA);
-        }
-        two *= 2;
-        tk = two - tk;
-    }
-    return newA;
-};
