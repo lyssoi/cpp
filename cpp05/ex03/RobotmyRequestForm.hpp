@@ -6,12 +6,15 @@
 
 class RobotmyRequestForm : public AForm
 {
-public:
+private:
+    const std::string target;
     RobotmyRequestForm();
-    ~RobotmyRequestForm();
     RobotmyRequestForm(const RobotmyRequestForm &temp);
     RobotmyRequestForm &operator=(const RobotmyRequestForm &temp);
-    RobotmyRequestForm(const std::string &name);
+public:
+    ~RobotmyRequestForm();
+    RobotmyRequestForm(const std::string &target);
+    const std::string &getTarget() const;
     void execute(const Bureaucrat &executor) const;
 };
 

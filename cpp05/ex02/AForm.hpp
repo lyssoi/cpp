@@ -12,7 +12,6 @@ private:
     const int grade_for_sign;
     const int grade_for_execute;
     bool is_signed;
-
 public:
     AForm();
     virtual ~AForm(){};

@@ -6,11 +6,11 @@
 
 class Intern {
     private:
+        Intern(const Intern &temp);
         Intern &operator=(const Intern &temp);
     public:
         Intern(){};
         ~Intern(){};
-        Intern(const Intern &temp);
         AForm *makeForm(const std::string &formName, const std::string &targetName);
         AForm *makeShruberryCreationForm(const std::string &targetName);
         AForm *makeRobotmyRequestForm(const std::string &targetName);
