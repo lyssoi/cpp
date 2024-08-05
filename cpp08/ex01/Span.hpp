@@ -3,7 +3,6 @@
 
 #include <vector>
 
-//vector를 써서 저장하고 
 class Span {
     private:
         std::vector <int>integers;
@@ -16,8 +15,10 @@ class Span {
         Span &operator=(const Span &temp);
         void addNumber(int num);
         void addManyNumber(const std::vector<int> &vec);
+        void addManyNumber(std::vector <int>::iterator first, std::vector <int>::iterator last);
         unsigned int shortestSpan();
         unsigned int longestSpan();
+        void print();
 };
 
 #endif

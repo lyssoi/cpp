@@ -42,8 +42,8 @@ int main() {
             li.push_back(2);
             li.push_back(3);
             li.push_back(4);
-            std::list<int> ::iterator it = easyfind(li, 3);
-            std::cout << *it << std::endl; 
+            std::list<int> ::iterator it = easyfind(li, 5);
+            std::cout << *it << st:endl; 
         } catch (const std::exception &e) {
             std::cerr << e.what() << std::endl;
         }

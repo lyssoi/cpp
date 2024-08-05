@@ -1,4 +1,5 @@
 #include "Span.hpp"
+#include <iostream>
 
 Span::Span(unsigned int N) {
     len = N;
@@ -20,21 +21,17 @@ Span &Span::operator=(const Span &temp) {
 }
 
 void Span::addNumber(int num) {
-    if (this->integers.size() == len) {
+    if (this->integers.size() >= len) {
         throw std::range_error("The span was full ");
-    }
-    std::vector <int> ::iterator it = find(this->integers.begin(), this->integers.end(), num);
-    if (it != this->integers.end()){
-        throw std::invalid_argument("The value is in the container already");
     }
     this->integers.push_back(num);
 }
 
 unsigned int Span::shortestSpan() {
-    unsigned int shortest = 4294967295;
     if (this->integers.size() < 2) {
-        return (0);
+        throw std::runtime_error("The span less han two");
     };
+    unsigned int shortest = 4294967295;
     Span tmp = *this;
     sort(tmp.integers.begin(), tmp.integers.end());
     std::vector <int>::iterator prev = tmp.integers.begin();
@@ -50,12 +47,18 @@ unsigned int Span::shortestSpan() {
 
 unsigned int Span::longestSpan() {
     if (this->integers.size() < 2) {
-        return (0);
+        throw std::runtime_error("The span less han two");
     }
     int maxnum = *std::max_element(this->integers.begin(), this->integers.end());
     int minnum = *std::min_element(this->integers.begin(), this->integers.end());
     return (maxnum - minnum);
-    // max값과 min값 찾아서 max - min 리턴
+}
+
+void Span::addManyNumber( std::vector <int>::iterator first, std::vector <int>::iterator last) {
+    if (this->integers.size() + last - first > len) {
+        throw std::range_error("The span was full ");
+    }
+    this->integers.insert(this->integers.end(), first, last);
 }
 
 void Span::addManyNumber(const std::vector<int> &vec) {
@@ -63,4 +66,12 @@ void Span::addManyNumber(const std::vector<int> &vec) {
         throw std::range_error("The span was full ");
     }
     this->integers.insert(this->integers.end(), vec.begin(), vec.end());
+}
+
+void Span::print() {
+    std::cout << "====span ===" << std::endl;
+    for (unsigned int i = 0; i < this->integers.size() ; i++){
+        std::cout << this->integers.at(i) << " ";
+    }
+    std::cout << std::endl;
 }
