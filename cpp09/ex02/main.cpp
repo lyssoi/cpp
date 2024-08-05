@@ -3,13 +3,14 @@
 
 int main(int argc, char *argv[]) 
 {
-    PMergeMe p;
-    for (int i = 1; i < argc; i++) {
-        p.not_sorted.push_back(atoi(argv[i]));
+    try {
+        PmergeMe p;
+
+        p.vectorRun(argc, argv);
+        p.listRun(argc, argv);
+        p.print();
     }
-    p.sorted = p.mergeInsertion(p.not_sorted);
-    for (size_t i = 0; i < p.sorted.size(); i++) {
-        std::cout << p.sorted[i] << " ";
+    catch(std::exception &e){
+        std::cout << e.what() << std::endl;
     }
-    std::cout << std::endl;
 }
