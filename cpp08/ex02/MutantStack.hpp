@@ -14,6 +14,7 @@ class MutantStack : public std::stack<T> {
         MutantStack &operator=(const MutantStack &temp){
             if (this == &temp)
                 return (*this);
+            std::stack<T>::operator=(temp);
             return *this;
         };
 

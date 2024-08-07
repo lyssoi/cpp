@@ -27,7 +27,7 @@ void Span::addNumber(int num) {
     this->integers.push_back(num);
 }
 
-unsigned int Span::shortestSpan() {
+unsigned int Span::shortestSpan() const {
     if (this->integers.size() < 2) {
         throw std::runtime_error("The span less han two");
     };
@@ -45,7 +45,7 @@ unsigned int Span::shortestSpan() {
     return (shortest);
 }
 
-unsigned int Span::longestSpan() {
+unsigned int Span::longestSpan() const {
     if (this->integers.size() < 2) {
         throw std::runtime_error("The span less han two");
     }
