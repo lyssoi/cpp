@@ -8,6 +8,7 @@ void RPN::run(int argc, char *argv[]) {
     while (ss >> token) {
         int oper;
         oper = isoperator(token);
+        // 10미만의 숫자만 다뤄야함 (그 이상은 예외처리!)
         if (oper != NOT_OP){
             int rvalue, lvalue, result;
             if (stack.empty())
