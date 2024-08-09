@@ -201,7 +201,8 @@ std::list<std::pair<int, int> > PmergeMe::mergeInsertion(std::list<std::pair<int
 
     std::list<std::pair<int, int> >::iterator it = d.begin();
     for (int i = 0; i < n / 2; i++, ++it) {
-        std::list<std::pair<int, int> >::iterator next_it = std::next(it, n / 2);
+        std::list<std::pair<int, int> >::iterator next_it = it;
+        std::advance(next_it, n / 2);
         if (*it > *next_it) {
             a.push_back(std::make_pair(it->first, i));
             oldA.push_back(*it);
@@ -213,17 +214,21 @@ std::list<std::pair<int, int> > PmergeMe::mergeInsertion(std::list<std::pair<int
         }
     }
     if (n % 2 == 1) {
-        it = std::next(d.begin(), n - 1);
+        it = d.begin();
+        std::advance(it, n - 1);
         oldB.push_back(*it);
     }
     newA = mergeInsertion(a);
     for (std::list<std::pair<int, int> >::iterator newA_it = newA.begin(); newA_it != newA.end(); ++newA_it) {
         int newIdx = newA_it->second;
-        std::list<std::pair<int, int> >::iterator oldB_element_it = std::next(oldB.begin(), newIdx);
+        std::list<std::pair<int, int> >::iterator oldB_element_it = oldB.begin();
+        std::advance(oldB_element_it, newIdx);
         newB.push_back(*oldB_element_it);
     }
     if (n % 2 == 1) {
-        newB.push_back(*std::next(oldB.begin(), n / 2));
+        std::list<std::pair<int, int> >::iterator last_it = oldB.begin();
+        std::advance(last_it, n / 2);
+        newB.push_back(*last_it);
     }
     std::list<std::pair<int, int> >::iterator oldA_it = oldA.begin();
     for (std::list<std::pair<int, int> >::iterator newA_it = newA.begin(); newA_it != newA.end(); ++newA_it) {
@@ -238,7 +243,9 @@ std::list<std::pair<int, int> > PmergeMe::mergeInsertion(std::list<std::pair<int
     while (tk < n / 2 + n % 2) {
         int t_m = std::min(two * 2 - tk, n / 2 + n % 2);
         for (int i = t_m; i >= tk + 1; i--) {
-            binaryinaryinsertion(*std::next(newB.begin(), i - 1), newA);
+            std::list<std::pair<int, int> >::iterator insert_it = newB.begin();
+            std::advance(insert_it, i - 1);
+            binaryinaryinsertion(*insert_it, newA);
         }
         two *= 2;
         tk = two - tk;
@@ -253,9 +260,11 @@ void PmergeMe::binaryinaryinsertion(std::pair<int, int> item, std::list<std::pai
 
     while (start_it != end_it) {
         int distance = std::distance(start_it, end_it) / 2;
-        mid_it = std::next(start_it, distance);
+        mid_it = start_it;
+        std::advance(mid_it, distance);
         if (mid_it->first < item.first) {
-            start_it = ++mid_it;
+            start_it = mid_it;
+            ++start_it;
         } else {
             end_it = mid_it;
         }
