@@ -15,12 +15,12 @@ enum {
 class RPN {
     private:
         std::stack<int> stack;
+        RPN(const RPN &tmp);
+        RPN &operator=(const RPN &tmp);
+        int isoperator(std::string token);
     public:
         RPN(){};
         ~RPN(){};
-        RPN(const RPN &tmp);
-        RPN &operator=(const RPN &tmp);
         void run(int argc, char *argv[]);
-        int isoperator(std::string token);
 };
 #endif

@@ -6,12 +6,14 @@ PmergeMe::PmergeMe(const PmergeMe &tmp) {
 }
 
 PmergeMe &PmergeMe::operator=(const PmergeMe &tmp){
-    this->l_not_sorted = tmp.l_not_sorted;
-    this->l_sorted = tmp.l_sorted;
-    this->l_time = tmp.l_time;
-    this->v_not_sorted = tmp.v_not_sorted;
-    this->v_sorted = tmp.v_sorted;
-    this->v_time = tmp.v_time;
+    if (this != &tmp) {
+        this->l_not_sorted = tmp.l_not_sorted;
+        this->l_sorted = tmp.l_sorted;
+        this->l_time = tmp.l_time;
+        this->v_not_sorted = tmp.v_not_sorted;
+        this->v_sorted = tmp.v_sorted;
+        this->v_time = tmp.v_time;
+    }
     return (*this);
 };
 

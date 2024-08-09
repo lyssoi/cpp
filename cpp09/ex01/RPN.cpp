@@ -1,5 +1,16 @@
 #include "RPN.hpp"
 
+RPN::RPN(const RPN &tmp) {
+    *this = tmp;
+}
+
+RPN &RPN::operator=(const RPN &tmp) {
+    if (this != &tmp) {
+        stack = stack;
+    }
+    return (*this);
+}
+
 void RPN::run(int argc, char *argv[]) {
     (void)argc;
     std::stringstream ss(argv[1]);
@@ -8,7 +19,6 @@ void RPN::run(int argc, char *argv[]) {
     while (ss >> token) {
         int oper;
         oper = isoperator(token);
-        // 10미만의 숫자만 다뤄야함 (그 이상은 예외처리!)
         if (oper != NOT_OP){
             int rvalue, lvalue, result;
             if (stack.empty())
@@ -34,6 +44,8 @@ void RPN::run(int argc, char *argv[]) {
             std::stringstream numss(token);
             if (!(numss >> num))
                 throw std::runtime_error("invalid input: number err");
+            if (num >= 10 || num <= -10)
+                throw std::runtime_error("invalid input: The number exceeds the allowed limit");
             stack.push(num);
         }
     }

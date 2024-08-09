@@ -28,6 +28,17 @@ const char *BitcoinExchange::notValidData::what() const throw() {
     return ("Error : not valid data. ");
 }
 
+BitcoinExchange::BitcoinExchange(const BitcoinExchange &temp) {
+    *this = temp;
+}
+
+BitcoinExchange &BitcoinExchange::operator=(const BitcoinExchange &temp){
+    if (this != &temp) {
+        this->coinmap = temp.coinmap;
+    }
+    return *this;
+}
+
 bool BitcoinExchange::strToInt(std::string str, int &num){
     std::stringstream ss(str);
     ss >> num;
@@ -74,6 +85,20 @@ void BitcoinExchange::parseData() {
     }
     std::string line;
     std::getline(data, line);
+    // ===== 함수로 따로 빼기 ===
+    // std::stringstream ssl(line);
+    // std::string key_date;
+    // std::string key_rate;
+    // std::string temp;
+    // if (!std::getline(ssl, key_date, ',') || !std::getline(ssl, key_rate, ',')) {
+    //     throw notValidData();
+    // }
+    // if (key_date != "date" || key_rate != "exchange_rate") {
+    //     throw notValidData();
+    // }
+    // if (std::getline(ssl, temp, ',')) {
+    //         throw notValidData();
+    // }
     while(!data.eof() && std::getline(data, line)) {
         std::string date;
         std::string value;
@@ -124,6 +149,7 @@ void BitcoinExchange::parseInputFile(std::string filename) {
     }
     std::string line;
     std::getline(data, line);
+    // 처음에 키 밸류 있는지 확인하는 함수 넣어놓기
     while(!data.eof() && std::getline(data, line)) {
         std::string date;
         std::string value;
