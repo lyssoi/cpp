@@ -4,6 +4,7 @@
 #include <sstream>
 #include <iostream>
 #include <exception>
+#include <climits>
 
 enum {
     NOT_OP,

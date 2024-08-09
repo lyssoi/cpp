@@ -161,7 +161,7 @@ float BitcoinExchange::checkValue(std::string str){
 
 void BitcoinExchange::parseInputFile(std::string filename) {
     std::ifstream data;
-    data.open(filename);
+    data.open(filename.c_str());
     if (!data.is_open()){
         throw BitcoinExchange::fileOpenError();
     }
