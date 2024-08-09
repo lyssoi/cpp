@@ -11,7 +11,7 @@ int main(int argc, char *argv[])
         PmergeMe p;
 
         p.vectorRun(argc, argv);
-        //p.listRun(argc, argv);
+        p.listRun(argc, argv);
         p.print();
     }
     catch(std::exception &e){

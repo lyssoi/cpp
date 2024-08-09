@@ -41,8 +41,13 @@ BitcoinExchange &BitcoinExchange::operator=(const BitcoinExchange &temp){
 
 bool BitcoinExchange::strToInt(std::string str, int &num){
     std::stringstream ss(str);
+    std::string remain;
     ss >> num;
     if (ss.fail()) {
+        return false;
+    }
+    ss >> remain;
+    if (!remain.empty()) {
         return false;
     }
     return true;
@@ -50,23 +55,18 @@ bool BitcoinExchange::strToInt(std::string str, int &num){
 
 bool BitcoinExchange::strToFloat(std::string str, float &num) {
     std::stringstream ss(str);
+    std::string remain;
     ss >> num;
-
     if (ss.fail()) {
         return false;
     }
-
+    ss >> remain;
+    if (!remain.empty()) {
+        return false;
+    }
     return true;
 }
 
-BitcoinExchange::BitcoinExchange(const BitcoinExchange & temp) {
-    *this = temp;
-};
-
-BitcoinExchange & BitcoinExchange::operator=(const BitcoinExchange &temp) {
-    this->coinmap = temp.coinmap;
-    return (*this);
-}
 
 BitcoinExchange::BitcoinExchange()
 {
@@ -77,6 +77,33 @@ BitcoinExchange::~BitcoinExchange()
 {
 }
 
+bool BitcoinExchange::notSpace(unsigned char ch) {
+    return !std::isspace(ch);
+}
+
+void BitcoinExchange::trim(std::string &str) {
+    str.erase(std::find_if(str.rbegin(), str.rend(),notSpace).base(), str.end()); // trimRight
+    str.erase(str.begin(), std::find_if(str.begin(), str.end(), notSpace)); // trimLeft
+}
+
+void BitcoinExchange::checkKey(std::string line, std::string key1, std::string key2, char delimiter) {
+    std::stringstream ss(line);
+    std::string key_date;
+    std::string key_rate;
+    std::string temp;
+    if (!std::getline(ss, key_date, delimiter) || !std::getline(ss, key_rate, delimiter)) {
+        throw std::runtime_error("Error : invalid key" + line);
+    }
+    trim(key_date);
+    trim(key_rate);
+    if (key_date != key1 || key_rate != key2) {
+        throw std::runtime_error("Error : invalid key" + line);
+    }
+    if (std::getline(ss, temp, delimiter)) {
+        throw std::runtime_error("Error : invalid key" + line);
+    }
+}
+
 void BitcoinExchange::parseData() {
     std::ifstream data;
     data.open("data.csv");
@@ -85,20 +112,7 @@ void BitcoinExchange::parseData() {
     }
     std::string line;
     std::getline(data, line);
-    // ===== 함수로 따로 빼기 ===
-    // std::stringstream ssl(line);
-    // std::string key_date;
-    // std::string key_rate;
-    // std::string temp;
-    // if (!std::getline(ssl, key_date, ',') || !std::getline(ssl, key_rate, ',')) {
-    //     throw notValidData();
-    // }
-    // if (key_date != "date" || key_rate != "exchange_rate") {
-    //     throw notValidData();
-    // }
-    // if (std::getline(ssl, temp, ',')) {
-    //         throw notValidData();
-    // }
+    checkKey(line, "date","exchange_rate", ',');
     while(!data.eof() && std::getline(data, line)) {
         std::string date;
         std::string value;
@@ -113,18 +127,22 @@ void BitcoinExchange::parseData() {
         if (std::getline(ss, tmp, ',')) {
             throw notValidData();
         }
+        trim(date);
+        trim(value);
         try {
         validDate = checkDate(date);
         } catch (std::exception &e) {
             throw notValidData();
         }
         if (!strToFloat(value,validValue))
-            throw notValidData();
+            throw std::runtime_error("data : not valid rate => " + value);
         if (validValue < 0){
-            throw notValidData();
+            throw std::runtime_error("data : not valid rate => " + value);
         }
         coinmap[validDate] = validValue;
     }
+    if (coinmap.size() < 1)
+        throw notValidData();
 }
 
 float BitcoinExchange::checkValue(std::string str){
@@ -149,7 +167,7 @@ void BitcoinExchange::parseInputFile(std::string filename) {
     }
     std::string line;
     std::getline(data, line);
-    // 처음에 키 밸류 있는지 확인하는 함수 넣어놓기
+    checkKey(line, "date","value", '|');
     while(!data.eof() && std::getline(data, line)) {
         std::string date;
         std::string value;
@@ -157,11 +175,12 @@ void BitcoinExchange::parseInputFile(std::string filename) {
         std::stringstream ss(line);
         unsigned int validDate;
         float validValue;
-
         if (!std::getline(ss, date, '|') || !std::getline(ss, value, '|') || std::getline(ss, tmp, '|')) {
             std::cout << "Error : Bad input => " << line << std::endl;
             continue;
         }
+        trim(date);
+        trim(value);
         try {
             validDate = checkDate(date);
             validValue = checkValue(value);
@@ -183,7 +202,7 @@ float BitcoinExchange::findCloseBitcoin(unsigned int date){
     if (it == coinmap.begin()) {
         throw std::runtime_error("Error : the date is not in the DB => ");
     }
-    if (it->first > date){
+    if (it->first > date || it == coinmap.end()){
         it--;
     }
     return it->second;

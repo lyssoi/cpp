@@ -6,7 +6,7 @@ RPN::RPN(const RPN &tmp) {
 
 RPN &RPN::operator=(const RPN &tmp) {
     if (this != &tmp) {
-        stack = stack;
+        this->stack = tmp.stack;
     }
     return (*this);
 }
@@ -20,14 +20,15 @@ void RPN::run(int argc, char *argv[]) {
         int oper;
         oper = isoperator(token);
         if (oper != NOT_OP){
-            int rvalue, lvalue, result;
+            long long rvalue, lvalue, result;
+            result = 0;
             if (stack.empty())
-                throw std::runtime_error("invalid input: rvalue err");
-            rvalue = stack.top();
+                throw std::runtime_error("invalid input");
+            rvalue = static_cast<long long>(stack.top());
             stack.pop();
             if (stack.empty())
-                throw std::runtime_error("invalid input: rvalue err");
-            lvalue = stack.top();
+                throw std::runtime_error("invalid input");
+            lvalue = static_cast<long long>(stack.top());
             stack.pop();
             if (oper == PLUS) {
                 result = lvalue + rvalue;
@@ -36,9 +37,14 @@ void RPN::run(int argc, char *argv[]) {
             } else if (oper == MULTIPLY) {
                 result = lvalue * rvalue;
             } else if (oper == DIVIDE) {
+                if (rvalue == 0)
+                    throw std::runtime_error("Error : Division by zero");
                 result = lvalue / rvalue;
             }
-            stack.push(result);
+            if (result > INT_MAX || result < INT_MIN){
+                throw std::overflow_error("Error: Integer overflow on addition");
+            }
+            stack.push(static_cast<int> (result));
         }
         else {
             std::stringstream numss(token);
