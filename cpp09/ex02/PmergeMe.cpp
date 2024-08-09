@@ -58,7 +58,6 @@ void PmergeMe::timeoutput(struct timeval start, struct timeval end, int type) {
     } else {
         throw std::runtime_error("Wrong type");
     }
-    //std::cout << "Time to process a range of 3000 elements with std::" << container << " : " << us << " us" <<std::endl;
 }
 
 
@@ -92,11 +91,10 @@ std::vector<std::pair<int, int> > PmergeMe::vectorInit(int argc, char *argv[]) {
 }
 
 
-void PmergeMe::binaryinaryinsertion(std::pair<int, int> item, std::vector<std::pair<int, int> >&d)
+void PmergeMe::binaryinaryinsertion(std::pair<int, int> item, std::vector<std::pair<int, int> >&d, int last_idx)
 {
     int start_idx = 0;
     int mid = 0;
-    int last_idx = d.size();
     while (start_idx < last_idx) {
         mid = (start_idx + last_idx) / 2;
         if (d[mid].first < item.first) {
@@ -151,7 +149,7 @@ std::vector<std::pair<int, int> > PmergeMe::mergeInsertion(std::vector<std::pair
     while (tk < n / 2 + n % 2) {
         int t_m = std::min(two * 2 - tk, n / 2 + n % 2);
         for (int i = t_m; i >= tk + 1; i--) {
-            binaryinaryinsertion(newB[i - 1], newA);
+            binaryinaryinsertion(newB[i - 1], newA, newA.size() - n / 2 + i - 1);
         }
         two *= 2;
         tk = two - tk;
@@ -245,7 +243,7 @@ std::list<std::pair<int, int> > PmergeMe::mergeInsertion(std::list<std::pair<int
         for (int i = t_m; i >= tk + 1; i--) {
             std::list<std::pair<int, int> >::iterator insert_it = newB.begin();
             std::advance(insert_it, i - 1);
-            binaryinaryinsertion(*insert_it, newA);
+            binaryinaryinsertion(*insert_it, newA, newA.size() - n / 2 + i - 1);
         }
         two *= 2;
         tk = two - tk;
@@ -253,9 +251,10 @@ std::list<std::pair<int, int> > PmergeMe::mergeInsertion(std::list<std::pair<int
     return newA;
 }
 
-void PmergeMe::binaryinaryinsertion(std::pair<int, int> item, std::list<std::pair<int, int> >& d) {
+void PmergeMe::binaryinaryinsertion(std::pair<int, int> item, std::list<std::pair<int, int> >& d, int last_idx) {
     std::list<std::pair<int, int> >::iterator start_it = d.begin();
-    std::list<std::pair<int, int> >::iterator end_it = d.end();
+    std::list<std::pair<int, int> >::iterator end_it = start_it;
+    std::advance(end_it, last_idx);
     std::list<std::pair<int, int> >::iterator mid_it;
 
     while (start_it != end_it) {

@@ -27,9 +27,9 @@ class PmergeMe {
         std::vector<std::pair<int, int> > vectorInit(int argc, char *argv[]);
         std::list<std::pair<int, int> > listInit(int artc, char *argv[]);
         std::vector<std::pair<int, int> > mergeInsertion(std::vector<std::pair<int, int> > &d);
-        void binaryinaryinsertion(std::pair<int, int> item, std::vector<std::pair<int, int> >&d);
+        void binaryinaryinsertion(std::pair<int, int> item, std::vector<std::pair<int, int> >&d, int last_idx);
         std::list<std::pair<int, int> > mergeInsertion(std::list<std::pair<int, int> > &d);
-        void binaryinaryinsertion(std::pair<int, int> item, std::list<std::pair<int, int> >&d);
+        void binaryinaryinsertion(std::pair<int, int> item, std::list<std::pair<int, int> >&d, int last_idx);
     public:
         PmergeMe() {};
         ~PmergeMe() {};
