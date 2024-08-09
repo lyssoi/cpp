@@ -7,6 +7,8 @@
 #include <string>
 #include <exception>
 #include <sstream>
+#include <limits>
+#include <stdexcept>
 
 enum {
     FORMERR,

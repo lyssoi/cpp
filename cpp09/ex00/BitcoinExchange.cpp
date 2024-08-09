@@ -39,6 +39,15 @@ BitcoinExchange &BitcoinExchange::operator=(const BitcoinExchange &temp){
     return *this;
 }
 
+BitcoinExchange::BitcoinExchange()
+{
+    parseData();
+}
+
+BitcoinExchange::~BitcoinExchange()
+{
+}
+
 bool BitcoinExchange::strToInt(std::string str, int &num){
     std::stringstream ss(str);
     std::string remain;
@@ -67,15 +76,6 @@ bool BitcoinExchange::strToFloat(std::string str, float &num) {
     return true;
 }
 
-
-BitcoinExchange::BitcoinExchange()
-{
-    parseData();
-}
-
-BitcoinExchange::~BitcoinExchange()
-{
-}
 
 bool BitcoinExchange::notSpace(unsigned char ch) {
     return !std::isspace(ch);
